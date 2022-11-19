@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP2
+namespace OOP3
 {
-    internal class MusteriManager
+    internal class SmsLoggerService : ILoggerService
     {
-        public void Ekle(Musteri musteri)
+        public void Log()
         {
-            //if (Musteri)
-            //{
-
-            //}
+            Console.WriteLine("Sms Yollandı");
         }
     }
 }

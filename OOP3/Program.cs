@@ -1,38 +1,36 @@
-﻿namespace OOP2
+﻿ namespace OOP3
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            // interface onu imlament eden clasın referans numarasını tutabilir
+            
+            IKrediManager ihtiyacKrediManager = new IhtiyacKrediManager();            
+            IKrediManager tasitKrediManager = new TasitKrediManager();           
+            IKrediManager konutKrediManager = new KonutKrediManager();
+            IKrediManager esnafKrediManager = new EsnafKredisiManager();
 
-            //Engin Demiroğ
-
-            GercekMusteri musteri1 = new GercekMusteri();
-            musteri1.Id = 1;
-            musteri1.MusteriNo = "12345";
-            musteri1.Adi = "Engin";
-            musteri1.Soyadi = "Demiroğ";
-            musteri1.TcNo = "1234567890";
-
-
-            //Kodlama.io
-
-            TuzelMusteri musteri2 = new TuzelMusteri();
-            musteri2.Id = 2;
-            musteri2.MusteriNo = "54321";
-            musteri2.SirketAdi = "Kodlama.io";
-            musteri2.VergiNo = "1234567890";
+            ILoggerService databaseLogger = new DatabaseLoggerService();
+            ILoggerService filebaseLogger = new FileLoggerService();
+            ILoggerService smsLogger = new SmsLoggerService(); 
+            
+            List<ILoggerService> loggers = new List<ILoggerService> {smsLogger,filebaseLogger };
 
 
-            Musteri musteri3 = new GercekMusteri();
-            Musteri musteri4 = new TuzelMusteri();
-
-            MusteriManager musteriManager = new MusteriManager();
-            musteriManager.Ekle(musteri1);
-            musteriManager.Ekle(musteri2);
+            BasvuruManager basvuruManager = new BasvuruManager();
+            basvuruManager.BasvuruYap(esnafKrediManager,loggers);
 
 
+            List<IKrediManager> krediler = new List<IKrediManager>() {ihtiyacKrediManager,tasitKrediManager,konutKrediManager };
 
+            //basvuruManager.KrediOnBilgilendirmesiYap(krediler);
+
+            
+
+            
+
+            
 
         }
     }
